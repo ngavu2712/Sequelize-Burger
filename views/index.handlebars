@@ -1,0 +1,55 @@
+
+
+<div class="container">
+    <div class="row">
+          <div id="burgerPhoto" class="col-sm-12">
+            <img src="Assets/css/image/hamburger.png">
+          </div>
+    </div>
+    <div class="row">
+        {{!-- Undevoured Burger --}}
+        <div id= "undevoured"class="col-sm-6">
+      {{#each burgers}}
+        
+        {{#unless this.Devoured}}
+
+            <button type="submit" class="eatburger btn btn-warning" data-id={{this.id}} data-newDevoured = {{Devoured}} ><i class="fas fa-utensils"></i>
+
+{{this.Burger_name}}</button>
+            <br>
+        
+
+           
+        {{/unless}}
+
+
+      {{/each}}
+
+        </div>
+        <div id="devourCol"class="col-sm-6">
+            
+         {{#each burgers}}
+
+            {{#if this.Devoured}}
+            
+                <ul>
+                  <button class="eatburger btn btn-warning">{{Burger_name}}</button>
+                </ul>
+                
+            {{/if}}
+         {{/each}}
+
+        </div>
+    </div>
+
+
+    <div class="row" id="inputBurger">
+        <div id="burgerAddition" class="col-sm-12">
+            <form  >
+            <input type="text" id="burgersName" placeholder ="What's burger is in your mind?"> 
+            <br> 
+            <button id="addBurger" type="submit" class="btn btn-dark">Add Burger</button>
+            </form>
+        </div>
+    </div>
+</div>
