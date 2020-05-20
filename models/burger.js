@@ -1,27 +1,22 @@
-// Import ORM
+// Export borewell model
+module.exports = function (sequelize, DataTypes) {
+    var Burger = sequelize.define("Burger", {
 
-const orm = require('../config/orm.js');
+        Burger_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1]
+            }
+        },
+        Devoured: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue : false
+        } 
+    });
 
-var burgers = 
-{
-    selectAll : function(dbControllerCallback){
-      orm.selectAll("burgers", function(burgerdb){
-          dbControllerCallback(burgerdb)
-      })
-    },
+     
 
-    insertOne : function(colNames, values, dbControllerCallback) {
-      orm.insertOne("burgers", colNames, values, function(burgerdb){
-        dbControllerCallback(burgerdb)
-      })
-    },
-
-    updateOne : function(colNames, values, dbControllerCallback){
-      orm.updateOne("burgers", colNames, values, function(burgerdb){
-        dbControllerCallback(burgerdb)
-      })
-    }
-
+    return Burger;
 }
-
-module.exports = burgers;

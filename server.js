@@ -30,8 +30,11 @@ app.use(routes);
 app.use(express.static('public'));
 
 
-
-
-app.listen(PORT, function(){
-    console.log("App is listening on http://localhost:" + PORT);
+var db = require('./models')
+db.sequelize.sync().then(function(){
+    
+    app.listen(PORT, function(){
+        console.log("App is listening on http://localhost:" + PORT);
+    })
+    
 })

@@ -1,5 +1,5 @@
 
-var burgers = require('../models/burger')
+ var db = require('../models')
 
 var express = require('express');
 
@@ -8,9 +8,11 @@ var router = express.Router();
 
 
 router.get("/", function(req,res){
-    burgers.selectAll(function(burgerdb){
+    db.Burger.findAll().then(function(burgerdb){
+        console.log(burgerdb)
         res.render("index", {burgers : burgerdb})
     })
+  
 });
 
 //Add new burgers to burgerdb from user input

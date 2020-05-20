@@ -11,11 +11,11 @@
         <div id= "undevoured"class="col-sm-6">
       {{#each burgers}}
         
-        {{#unless this.Devoured}}
+        {{#unless dataValues.Devoured}}
 
-            <button type="submit" class="eatburger btn btn-warning" data-id={{this.id}} data-newDevoured = {{Devoured}} ><i class="fas fa-utensils"></i>
+            <button type="submit" class="eatburger btn btn-warning" data-id={{dataValues.id}} data-newDevoured = {{dataValues.Devoured}} ><i class="fas fa-utensils"></i>
 
-{{this.Burger_name}}</button>
+{{dataValues.Burger_name}}</button>
             <br>
         
 
@@ -30,10 +30,10 @@
             
          {{#each burgers}}
 
-            {{#if this.Devoured}}
+            {{#if dataValues.Devoured}}
             
                 <ul>
-                  <button class="eatburger btn btn-warning">{{Burger_name}}</button>
+                  <button class="eatburger btn btn-warning">{{dataValues.Burger_name}}</button>
                 </ul>
                 
             {{/if}}
