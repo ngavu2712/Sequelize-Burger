@@ -18,8 +18,11 @@ router.get("/", function(req,res){
 //Add new burgers to burgerdb from user input
 router.post("/api/burgers", function (req,res) {
 //router.post("/burgers", function (req,res) {
-    req.body.Devoured = false;
-    burgers.insertOne(['Burger_name', 'Devoured'], [req.body.Burger_name, req.body.Devoured], function(burgerdb){
+    //req.body.Devoured = false;
+    db.Burger.create({
+        Burger_name: req.body.Burger_name,
+        Devoured: req.body.Devoured
+    }).then(function(burgerdb){
         //Send back the id of the new burger
         res.json({id: burgerdb.insertId})
     })
@@ -29,14 +32,18 @@ router.put('/api/burgers/:id', function (req,res){
     var id = req.params.id;
    
     req.body.Devoured = true;
-    burgers.updateOne( ["Devoured", "id"], [true,id], function(burgerdb){
-        if (burgerdb.changedRows == 0){
-            // If no rows were changed, then the ID must not exist, so 404
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
+    db.Burger.update(
+        {
+        Burger_name: req.body.text,
+        Devoured: req.body.Devoured
+        },
+        { where : {
+            id: id
         }
-    });
+    }).then(function(burgerdb){
+        res.json(burgerdb)
+    })
+       
 });
 
 
